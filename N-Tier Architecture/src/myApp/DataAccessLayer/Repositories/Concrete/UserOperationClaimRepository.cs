@@ -1,7 +1,7 @@
 ﻿using Core.Persistence.Repositories;
-using DataAccessLayer.Repositories.Abstract;
 using EntitiesLayer.Concrete;
 using Persistence.Contexts;
+using DataAccessLayer.Repositories.Abstract;
 
 namespace DataAccessLayer.Repositories.Concrete;
 
