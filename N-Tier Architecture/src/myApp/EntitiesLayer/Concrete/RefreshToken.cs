@@ -1,5 +1,4 @@
 ﻿using Core.Persistence.Repositories;
-using EntitiesLayer.Concrete;
 
 namespace EntitiesLayer.Concrete;
 

@@ -11,19 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "myApp", "myApp", "{B27061B5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "src\core\Core.Application\Core.Application.csproj", "{1252BF29-96E0-4D04-9E09-60B2B2F739A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "src\core\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{FD13756E-08BE-4C95-99FC-3BF1381CACD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "src\core\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{FD13756E-08BE-4C95-99FC-3BF1381CACD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "src\core\Core.Persistence\Core.Persistence.csproj", "{B34EF0E1-70A8-42AF-A5E0-09270C205920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "src\core\Core.Persistence\Core.Persistence.csproj", "{B34EF0E1-70A8-42AF-A5E0-09270C205920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "src\core\Core.Security\Core.Security.csproj", "{A60B48CB-285A-433C-BD7B-842C2397A991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "src\core\Core.Security\Core.Security.csproj", "{A60B48CB-285A-433C-BD7B-842C2397A991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "src\myApp\BusinessLayer\BusinessLayer.csproj", "{D30997A9-AAB4-4A19-B04B-95FB02692AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "src\myApp\BusinessLayer\BusinessLayer.csproj", "{D30997A9-AAB4-4A19-B04B-95FB02692AEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "src\myApp\DataAccessLayer\DataAccessLayer.csproj", "{7E7EC41D-5B13-40CA-B9F1-244DC3715CEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "src\myApp\DataAccessLayer\DataAccessLayer.csproj", "{7E7EC41D-5B13-40CA-B9F1-244DC3715CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntitiesLayer", "src\myApp\EntitiesLayer\EntitiesLayer.csproj", "{766B5F05-8AC0-402F-B89F-797436B3B066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntitiesLayer", "src\myApp\EntitiesLayer\EntitiesLayer.csproj", "{766B5F05-8AC0-402F-B89F-797436B3B066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\myApp\WebAPI\WebAPI.csproj", "{BCF047C5-2737-4BED-91CF-51FC00E6C551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\myApp\WebAPI\WebAPI.csproj", "{BCF047C5-2737-4BED-91CF-51FC00E6C551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Mailing", "src\core\Core.Mailing\Core.Mailing.csproj", "{696E17D5-EFD6-440E-B249-530B5098C075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{BCF047C5-2737-4BED-91CF-51FC00E6C551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF047C5-2737-4BED-91CF-51FC00E6C551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF047C5-2737-4BED-91CF-51FC00E6C551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{696E17D5-EFD6-440E-B249-530B5098C075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696E17D5-EFD6-440E-B249-530B5098C075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696E17D5-EFD6-440E-B249-530B5098C075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696E17D5-EFD6-440E-B249-530B5098C075}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{7E7EC41D-5B13-40CA-B9F1-244DC3715CEE} = {B27061B5-3EEB-4C65-9123-913285225CC0}
 		{766B5F05-8AC0-402F-B89F-797436B3B066} = {B27061B5-3EEB-4C65-9123-913285225CC0}
 		{BCF047C5-2737-4BED-91CF-51FC00E6C551} = {B27061B5-3EEB-4C65-9123-913285225CC0}
+		{696E17D5-EFD6-440E-B249-530B5098C075} = {4BB823AA-4906-4CCB-976F-71F67D085E30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {713245C9-5AD3-480D-99E5-AD7D9CBDDC04}

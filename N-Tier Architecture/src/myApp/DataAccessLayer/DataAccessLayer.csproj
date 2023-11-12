@@ -14,7 +14,6 @@
 
 	<ItemGroup>
     <ProjectReference Include="..\..\core\Core.Persistence\Core.Persistence.csproj" />
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj" />
   </ItemGroup>
 
