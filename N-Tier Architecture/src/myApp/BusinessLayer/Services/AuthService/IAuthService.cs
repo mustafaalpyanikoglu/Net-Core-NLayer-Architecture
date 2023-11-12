@@ -1,4 +1,4 @@
-﻿using BusinessLayer.DTOs.Auths;
+﻿using BusinessLayer.Features.Auths.Dtos;
 using Core.Security.Jwt;
 using Core.Utilities.Abstract;
 using EntitiesLayer.Concrete;

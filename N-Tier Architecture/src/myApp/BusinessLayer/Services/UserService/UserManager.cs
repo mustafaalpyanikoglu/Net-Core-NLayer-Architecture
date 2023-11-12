@@ -1,15 +1,15 @@
-﻿using BusinessLayer.Services.ImageService;
-using BusinessLayer.Constants.Users;
+﻿using DataAccessLayer.Repositories.Abstract;
+using BusinessLayer.Features.Users.Constants;
+using BusinessLayer.Features.Users.Rules;
+using BusinessLayer.Services.ImageService;
 using Core.CrossCuttingConcerns.Exceptions.Types;
-using DataAccessLayer.Repositories.Abstract;
 using EntitiesLayer.Concrete;
-using EntitiesLayer.Constants;
 using Microsoft.AspNetCore.Http;
-using BusinessLayer.BusinessRules;
+using static EntitiesLayer.Constants.PathConstant;
 
 namespace BusinessLayer.Services.UserService;
 
-public class UserManager:IUserService
+public class UserManager : IUserService
 {
     private readonly IUserRepository _userDal;
     private readonly ImageServiceBase _imageService;
@@ -25,7 +25,7 @@ public class UserManager:IUserService
     public async Task ActivateTheUser(int userId)
     {
         User? user = await _userDal.GetAsync(p => p.Id == userId);
-        if (user is null) 
+        if (user is null)
             throw new BusinessException(UserMessages.UserNotFound);
 
         user.UserStatus = true;
@@ -57,7 +57,7 @@ public class UserManager:IUserService
 
     public async Task<string> UpdateImage(IFormFile file, string? imageUrl)
     {
-        if(imageUrl == PathConstant.DEFAULT_IMAGE_URL)
+        if (imageUrl == DEFAULT_IMAGE_URL)
         {
             imageUrl = await _imageService.UploadAsync(file);
         }
@@ -70,7 +70,7 @@ public class UserManager:IUserService
 
     public async Task<string> UpdateCV(IFormFile file, string? cvUrl)
     {
-        if(cvUrl is null)
+        if (cvUrl is null)
         {
             cvUrl = await _imageService.UploadAsync(file);
         }

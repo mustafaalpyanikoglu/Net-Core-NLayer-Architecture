@@ -2,24 +2,25 @@
 using Microsoft.EntityFrameworkCore;
 using Core.Security.Jwt;
 using Entities.Enums;
+using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.EmailAuthenticator;
 using MimeKit;
 using Core.Mailing;
 using Core.Security.OtpAuthenticator;
 using Microsoft.Extensions.Configuration;
-using static BusinessLayer.Constants.Auths.AuthMessages;
-using static BusinessLayer.Constants.Users.UserMessages;
+using static BusinessLayer.Features.Auths.Constants.AuthMessages;
+using static BusinessLayer.Features.Users.Constants.UserMessages;
 using System.Net.Mail;
 using System.Net;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
 using Core.CrossCuttingConcerns.Exceptions.Types;
+using BusinessLayer.Features.Auths.Dtos;
+using BusinessLayer.Features.Auths.Rules;
+using BusinessLayer.Features.Users.Constants;
 using DataAccessLayer.Repositories.Abstract;
 using EntitiesLayer.Concrete;
 using EntitiesLayer.Constants;
-using BusinessLayer.Constants.Users;
-using BusinessLayer.DTOs.Auths;
-using BusinessLayer.BusinessRules;
 
 namespace BusinessLayer.Services.AuthService;
 
@@ -40,11 +41,11 @@ public class AuthManager : IAuthService
     private readonly SmtpSettings _smtpSettings;
     #endregion
 
-    public AuthManager(ITokenHelper tokenHelper, AuthBusinessRules authBusinessRules, 
-        IUserRepository userDal, IUserOperationClaimRepository userOperationClaimRepository, 
-        IEmailAuthenticatorRepository emailAuthenticatorRepository, 
-        IEmailAuthenticatorHelper emailAuthenticatorHelper, IMailService mailService, 
-        IOtpAuthenticatorRepository otpAuthenticatorRepository, IOtpAuthenticatorHelper otpAuthenticatorHelper, 
+    public AuthManager(ITokenHelper tokenHelper, AuthBusinessRules authBusinessRules,
+        IUserRepository userDal, IUserOperationClaimRepository userOperationClaimRepository,
+        IEmailAuthenticatorRepository emailAuthenticatorRepository,
+        IEmailAuthenticatorHelper emailAuthenticatorHelper, IMailService mailService,
+        IOtpAuthenticatorRepository otpAuthenticatorRepository, IOtpAuthenticatorHelper otpAuthenticatorHelper,
         IRefreshTokenRepository refreshTokenRepository, IConfiguration configuration)
     {
         _tokenHelper = tokenHelper;
@@ -73,7 +74,7 @@ public class AuthManager : IAuthService
             }
 
             await _authBusinessRules.AccountIsAlreadyActivated(emailAuthenticator.IsVerified);
-            
+
             bool isMailSent = await SendVerificationMail(email, user.FirstName, emailAuthenticator.ActivationKey);
             if (isMailSent)
             {
@@ -86,7 +87,7 @@ public class AuthManager : IAuthService
         }
         else
         {
-            return new ErrorDataResult<string>(UserMessages.UserNotFound);
+            return new ErrorDataResult<string>(UserNotFound);
         }
     }
 
@@ -99,7 +100,7 @@ public class AuthManager : IAuthService
                 mailMessage.From = new MailAddress(email);
                 mailMessage.To.Add(email);
                 mailMessage.Subject = "MONOVI - Staj Takip Programı";
-                mailMessage.Body = $"<h2>Merhaba {firstName}</h2>" + "<p>Aktivasyon kodunuz çift tırnak içindeki ifadedir: " + $"\"<b>{activationKey}</b>\"" +"</p>";
+                mailMessage.Body = $"<h2>Merhaba {firstName}</h2>" + "<p>Aktivasyon kodunuz çift tırnak içindeki ifadedir: " + $"\"<b>{activationKey}</b>\"" + "</p>";
                 mailMessage.IsBodyHtml = true;
 
                 using (SmtpClient smtp = new SmtpClient(_smtpSettings.SmtpServer, _smtpSettings.SmtpPort))
@@ -189,7 +190,7 @@ public class AuthManager : IAuthService
         accessToken.FirstName = user.FirstName;
         accessToken.LastName = user.LastName;
         accessToken.UserID = user.Id;
-        if(operationClaims.FirstOrDefault() is not null)
+        if (operationClaims.FirstOrDefault() is not null)
             accessToken.OperationClaimName = operationClaims.FirstOrDefault().Name;
         return accessToken;
     }

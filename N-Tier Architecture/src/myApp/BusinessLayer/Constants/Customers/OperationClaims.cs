@@ -1,9 +1,0 @@
-﻿namespace BusinessLayer.Constants.Customers;
-
-public static class OperationClaims
-{
-    public const string CustomerAdd = "customer.add";
-    public const string CustomerUpdate = "customer.update";
-    public const string CustomerDelete = "customer.delete";
-    public const string CustomerGet = "customer.get";
-}

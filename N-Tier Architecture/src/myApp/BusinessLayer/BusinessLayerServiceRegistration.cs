@@ -1,8 +1,14 @@
-﻿using Core.Application.Pipelines.Logging;
+﻿using BusinessLayer.Services.AuthService;
+using BusinessLayer.Services.ImageService;
+using BusinessLayer.Services.UserService;
+using Core.Application.Pipelines.Logging;
 using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Logging.Serilog;
 using Core.CrossCuttingConcerns.Logging.Serilog.Logger;
+using Core.Mailing;
+using Core.Mailing.MailKitImplementations;
 using FluentValidation;
+using Infrastructure.Adapters.ImageService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -25,9 +31,14 @@ public static class BusinessLayerServiceRegistration
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+        services.AddScoped<ImageServiceBase, CloudinaryImageServiceAdapter>();
+        services.AddScoped<IAuthService, AuthManager>();
+        services.AddScoped<IUserService, UserManager>();
 
         services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
         //services.AddSingleton<LoggerServiceBase, FileLogger>();
+
+        services.AddSingleton<IMailService, MailKitMailService>();
 
         return services;
     }
