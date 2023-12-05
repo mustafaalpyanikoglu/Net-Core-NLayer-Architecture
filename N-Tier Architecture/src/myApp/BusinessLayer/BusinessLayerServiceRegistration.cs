@@ -1,6 +1,11 @@
 ﻿using BusinessLayer.Services.AuthService;
+using BusinessLayer.Services.CustomerService;
+using BusinessLayer.Services.CustomerWarehouseCostService;
 using BusinessLayer.Services.ImageService;
+using BusinessLayer.Services.LocationSolverService;
 using BusinessLayer.Services.UserService;
+using BusinessLayer.Services.WarehouseService;
+using Core.Application.Algorithms;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Logging.Serilog;
@@ -34,6 +39,13 @@ public static class BusinessLayerServiceRegistration
         services.AddScoped<ImageServiceBase, CloudinaryImageServiceAdapter>();
         services.AddScoped<IAuthService, AuthManager>();
         services.AddScoped<IUserService, UserManager>();
+        services.AddScoped<IWarehouseService, WarehouseManager>();
+        services.AddScoped<ICustomerService, CustomerManager>();
+        services.AddScoped<ICustomerWarehouseCostService, CustomerWarehouseCostManager>();
+        services.AddScoped<ILocationSolverService, LocationSolverManager>();
+
+        services.AddScoped<ISimulatedAnnealing, SimulatedAnnealing>();
+        services.AddScoped<IQuickSort, QuickSort>();
 
         services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
         //services.AddSingleton<LoggerServiceBase, FileLogger>();
